@@ -2,13 +2,14 @@ import { useState, useCallback } from "react";
 import { styled } from "@mui/material/styles";
 import Paper from "@mui/material/Paper";
 import Table from "@mui/material/Table";
+import InputAdornment from "@mui/material/InputAdornment";
 import TableBody from "@mui/material/TableBody";
 import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 import TextField from "@mui/material/TextField";
 import Row from "./Row";
-import { Typography } from "@mui/material";
+import { FormControl, Typography } from "@mui/material";
 
 function setPartial(setter, data) {
   setter((prev) => ({
@@ -34,6 +35,7 @@ export function useIncomeData() {
 const RightAlignedTextField = styled(TextField)({
   "& input": {
     textAlign: "right",
+    maxWidth: "70px",
   },
 });
 
@@ -50,11 +52,16 @@ export default function Income({ summary, data, setData }) {
             </TableRow>
             <TableRow>
               <TableCell component="th" scope="row">
-                Timarvode (kr/timme ex. moms)
+                Timarvode (exkl. moms)
               </TableCell>
               <TableCell align="right">
                 <RightAlignedTextField
                   variant="standard"
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">kr</InputAdornment>
+                    ),
+                  }}
                   inputProps={{
                     inputMode: "numeric",
                     pattern: "[0-9]*",
@@ -65,9 +72,23 @@ export default function Income({ summary, data, setData }) {
             </TableRow>
             <TableRow>
               <TableCell component="th" scope="row">
-                Beläggning (antal månader)
+                Beläggning
               </TableCell>
-              <TableCell align="right">{9}</TableCell>
+              <TableCell align="right">
+                <RightAlignedTextField
+                  variant="standard"
+                  InputProps={{
+                    endAdornment: (
+                      <InputAdornment position="end">månader</InputAdornment>
+                    ),
+                  }}
+                  inputProps={{
+                    inputMode: "numeric",
+                    pattern: "[0-9]*",
+                  }}
+                  defaultValue={9}
+                />
+              </TableCell>
             </TableRow>
 
             <TableRow>
@@ -79,19 +100,53 @@ export default function Income({ summary, data, setData }) {
               <TableCell component="th" scope="row">
                 Arbetstimmar per vecka
               </TableCell>
-              <TableCell align="right">{35}</TableCell>
+              <TableCell align="right">
+                <RightAlignedTextField
+                  variant="standard"
+                  inputProps={{
+                    inputMode: "numeric",
+                    pattern: "[0-9]*",
+                  }}
+                  defaultValue={35}
+                />
+              </TableCell>
             </TableRow>
             <TableRow>
               <TableCell component="th" scope="row">
                 Lediga veckor under uppdrag
               </TableCell>
-              <TableCell align="right">{6}</TableCell>
+              <TableCell align="right">
+                <RightAlignedTextField
+                  variant="standard"
+                  inputProps={{
+                    inputMode: "numeric",
+                    pattern: "[0-9]*",
+                  }}
+                  defaultValue={6}
+                />
+              </TableCell>
             </TableRow>
             <TableRow>
               <TableCell component="th" scope="row">
                 Uppskattad andel sjukdagar/vab
               </TableCell>
-              <TableCell align="right">{0.05}</TableCell>
+              <TableCell align="right">
+                <FormControl>
+                  <RightAlignedTextField
+                    variant="standard"
+                    InputProps={{
+                      endAdornment: (
+                        <InputAdornment position="end">%</InputAdornment>
+                      ),
+                    }}
+                    inputProps={{
+                      inputMode: "numeric",
+                      pattern: "[0-9]*",
+                    }}
+                    defaultValue={5}
+                  />
+                </FormControl>
+              </TableCell>
             </TableRow>
           </TableBody>
         </Table>
