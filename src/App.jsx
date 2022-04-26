@@ -1,5 +1,4 @@
-import Budget from './Budget';
-import './App.css';
+import Budget from './budget';
 
 function App() {
   return (
