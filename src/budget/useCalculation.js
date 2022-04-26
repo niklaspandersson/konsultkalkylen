@@ -1,15 +1,18 @@
 import { useReducer } from "react";
 import { InitialState as InitialIncomeState, summary as incomeSummary } from './income/data';
 import { InitialState as InitialSalaryState, summary as salarySummary } from './salary/data';
+import { InitialState as InitialExpensesState, summary as expensesSummary } from './expenses/data';
 
 const InitialState = {
   income: InitialIncomeState,
   salary: InitialSalaryState,
+  expenses: InitialExpensesState,
 }
 
 const summaryCalc = {
   income: incomeSummary,
   salary: salarySummary,
+  expenses: expensesSummary,
 }
 
 for(const part in summaryCalc)

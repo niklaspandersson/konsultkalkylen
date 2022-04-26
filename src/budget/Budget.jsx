@@ -7,10 +7,11 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import Income from "./income";
 import Salary from "./salary";
+import Expenses from "./expenses";
 import useCalculation from "./useCalculation";
 
 export default function Budget() {
-  const [{ income, salary }, dispatch] = useCalculation();
+  const [{ income, salary, expenses }, dispatch] = useCalculation();
 
   return (
     <TableContainer component={Paper}>
@@ -27,11 +28,15 @@ export default function Budget() {
         <TableBody>
           <Income
             data={income}
-            setData={(data) => dispatch({ part: 'income', data })}
+            setData={(data) => dispatch({ part: "income", data })}
           />
           <Salary
             data={salary}
-            setData={(data) => dispatch({ part: 'salary', data })}
+            setData={(data) => dispatch({ part: "salary", data })}
+          />
+          <Expenses
+            data={expenses}
+            setData={(data) => dispatch({ part: "expenses", data })}
           />
         </TableBody>
       </Table>
