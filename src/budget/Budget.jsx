@@ -14,11 +14,10 @@ export default function Budget() {
   const [{ income, salary, expenses }, dispatch] = useCalculation();
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
-            <TableCell />
             <TableCell></TableCell>
             <TableCell align="right">pris</TableCell>
             <TableCell align="right">antal</TableCell>
@@ -34,10 +33,10 @@ export default function Budget() {
             data={salary}
             setData={(data) => dispatch({ part: "salary", data })}
           />
-          <Expenses
+          {/* <Expenses
             data={expenses}
             setData={(data) => dispatch({ part: "expenses", data })}
-          />
+          /> */}
         </TableBody>
       </Table>
     </TableContainer>

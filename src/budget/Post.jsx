@@ -55,37 +55,34 @@ export const DetailsInput = ({ unit, ...props }) =>
     </FormControl>
   </TableCell>
 
+const PostHeader = ({ heading }) => (
+  <TableRow>
+    <TableCell component="th" scope="row" colSpan={4}>
+      <Typography variant="subtitle1">{heading}</Typography>
+        </TableCell>
+      </TableRow>
+);
+
+const Row = ({ title, unitPrice, units, sum }) => {
+  const sumToDisplay = sum ? sum : (unitPrice ?? 0) * (units ?? 0);
+  return (
+    <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
+      <TableCell component="th" scope="row">
+        <Typography variant="subtitle2">{title}</Typography>
+      </TableCell>
+      <TableCell align="right">{unitPrice?.toLocaleString()}</TableCell>
+      <TableCell align="right">{units?.toLocaleString()}</TableCell>
+      <TableCell align="right">{sumToDisplay?.toLocaleString()}</TableCell>
+    </TableRow>
+  );
+};
 export default function Post(props) {
-  const { heading, unitPrice, count, sum, children } = props;
-  const [open, setOpen] = useState(false);
+  const { heading, rows, children } = props;
 
   return (
     <>
-      <TableRow>
-        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={4}>
-          <Collapse in={open} timeout="auto" unmountOnExit>
-            <Box sx={{ margin: 1 }}>{children}</Box>
-          </Collapse>
-        </TableCell>
-      </TableRow>
-      <TableRow sx={{ "& > *": { borderBottom: "unset" } }}>
-        <TableCell>
-          <IconButton
-            aria-label="expand row"
-            size="small"
-            onClick={() => setOpen(!open)}
-          >
-            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
-          </IconButton>
-        </TableCell>
-        <TableCell component="th" scope="row">
-          <Typography variant="subtitle1">{heading}</Typography>
-        </TableCell>
-        <TableCell align="right">{unitPrice.toLocaleString()}</TableCell>
-        <TableCell align="right">{count.toLocaleString()}</TableCell>
-        <TableCell align="right">{sum.toLocaleString()}</TableCell>
-      </TableRow>
-
+      <PostHeader heading={heading} />
+      {rows.map(row => <Row {...row} />)}
     </>
   );
 }
