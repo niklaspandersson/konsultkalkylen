@@ -23,7 +23,7 @@ export function summary(data) {
   const payedHours = Math.round(workingHours * (1 - data.sickLeavePercent / 100));
   return {
     unitPrice: data.rate,
-    count: payedHours,
+    units: payedHours,
     sum: data.rate * payedHours,
   };  
 }

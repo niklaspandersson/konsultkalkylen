@@ -22,7 +22,7 @@ export const summary = (data) => {
   const monthlyCosts = data.salary + salaryFee + data.pension + pensionTax;
   return {
     unitPrice: -monthlyCosts,
-    count: data.months,
+    units: data.months,
     sum: -monthlyCosts * data.months,
   };
 }

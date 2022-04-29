@@ -4,7 +4,6 @@ import TableCell from "@mui/material/TableCell";
 import TableContainer from "@mui/material/TableContainer";
 import TableHead from "@mui/material/TableHead";
 import TableRow from "@mui/material/TableRow";
-import Paper from "@mui/material/Paper";
 import Income from "./income";
 import Salary from "./salary";
 import Expenses from "./expenses";
@@ -14,11 +13,10 @@ export default function Budget() {
   const [{ income, salary, expenses }, dispatch] = useCalculation();
 
   return (
-    <TableContainer component={Paper}>
+    <TableContainer>
       <Table aria-label="collapsible table">
         <TableHead>
           <TableRow>
-            <TableCell />
             <TableCell></TableCell>
             <TableCell align="right">pris</TableCell>
             <TableCell align="right">antal</TableCell>
