@@ -3,8 +3,8 @@ import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 
-import { DetailsHeader, DetailsInput, DetailsTitle, DetailsValue } from "../Post";
-import { EmployerFee, PensionTax } from './data';
+import { DetailsHeader, DetailsInput, DetailsTitle, DetailsValue } from "../cells";
+import { EmployerFee, PensionTax } from './reducer';
 
 const SalaryParameters = ({ data, setData }) => (
   <TableContainer>

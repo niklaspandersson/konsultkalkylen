@@ -7,14 +7,14 @@ import TableRow from "@mui/material/TableRow";
 import Income from "./income";
 import Salary from "./salary";
 import Expenses from "./expenses";
-import useCalculation from "./useCalculation";
+import useCalculation from "./useBudgetCalculation";
 
 export default function Budget() {
   const [{ income, salary, expenses }, dispatch] = useCalculation();
 
   return (
     <TableContainer>
-      <Table aria-label="collapsible table">
+      <Table size="small" aria-label="collapsible table">
         <TableHead>
           <TableRow>
             <TableCell></TableCell>
@@ -26,16 +26,16 @@ export default function Budget() {
         <TableBody>
           <Income
             data={income}
-            setData={(data) => dispatch({ part: "income", data })}
+            setData={(data) => dispatch({ post: "income", payload: data })}
           />
           <Salary
             data={salary}
-            setData={(data) => dispatch({ part: "salary", data })}
+            setData={(data) => dispatch({ post: "salary", payload: data })}
           />
-          {/* <Expenses
+          <Expenses
             data={expenses}
-            setData={(data) => dispatch({ part: "expenses", data })}
-          /> */}
+            setData={(data) => dispatch({ post: "expenses", payload: data })}
+          />
         </TableBody>
       </Table>
     </TableContainer>

@@ -3,7 +3,7 @@ import TableBody from "@mui/material/TableBody";
 import TableContainer from "@mui/material/TableContainer";
 import TableRow from "@mui/material/TableRow";
 
-import { DetailsHeader, DetailsInput, DetailsTitle } from "../Post";
+import { DetailsHeader, DetailsInput, DetailsTitle } from "../cells";
 
 const IncomeParameters = ({ data, setData }) => (
   <TableContainer>

@@ -1,10 +1,14 @@
+import { Container } from '@mui/material';
+import { ThemeProvider } from '@mui/material/styles';
 import Budget from './budget';
-
+import theme from './theme';
 function App() {
   return (
-    <div className="App">
-      <Budget />
-    </div>
+    <ThemeProvider theme={theme}>
+      <Container maxWidth="md">
+        <Budget />
+      </Container>
+    </ThemeProvider>
   );
 }
 

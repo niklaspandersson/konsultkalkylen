@@ -17,7 +17,7 @@ export const InitialState = {
   occupancy: DefaultOccupancy,
 };
 
-export function summary(data) {
+function summary(data) {
   const workingWeeks = WeeksPerMonth * data.occupancy - data.vacation;
   const workingHours = workingWeeks * data.workHoursPerWeek;
   const payedHours = Math.round(workingHours * (1 - data.sickLeavePercent / 100));
@@ -26,4 +26,14 @@ export function summary(data) {
     units: payedHours,
     sum: data.rate * payedHours,
   };  
+}
+
+export default function reducer(prev, { payload }) {
+  const newState = {
+    ...prev,
+    ...payload
+  };
+
+  newState.summary = summary(newState);
+  return newState;
 }
