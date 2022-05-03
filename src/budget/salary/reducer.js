@@ -12,42 +12,35 @@ export const InitialState = reducer({
   salary: DefaultMonthlySalary,
   pension: DefaultMonthlyPension,
   months: DefaultMonths,
-});
+}, {}, true);
+const StateKeys = Object.keys(InitialState);
 
-function summary(data) {
-  const salaryFee = Math.round(data.salary * EmployerFee);
-  const pensionTax = Math.round(data.pension * PensionTax);
+export default function reducer(prev, { payload }, force) {
+  if(!force && !Object.keys(payload ?? {}).find(key => StateKeys.includes(key)))
+    return prev;
 
-  const monthlyCosts = data.salary + salaryFee + data.pension + pensionTax;
-  return {
-    unitPrice: monthlyCosts,
-    units: data.months,
-  };
-}
-
-export default function reducer(prev, action) {
-  const data = prev;
-  const rows = [{
+  const next = {...prev, ...payload };
+  next.rows = [{
     title: 'Lön',
-    unitPrice: data.salary,
-    units: data.months,
+    unitPrice: next.salary,
+    units: next.months,
   },
   {
     title: `Arbetsgivaravgift (${Math.round(EmployerFee * 10000) / 100}% av lön)`,
-    unitPrice: Math.round(data.salary * EmployerFee),
-    units: data.months,
+    unitPrice: Math.round(next.salary * EmployerFee),
+    units: next.months,
   },
   {
     title: `Avsättning till tjänstepension (per månad)`,
-    unitPrice: data.pension,
-    units: data.months,
+    unitPrice: next.pension,
+    units: next.months,
   },
   {
     title: `Löneskatt (${Math.round(PensionTax * 10000) / 100}% av pensionskostnader)`,
-    unitPrice: Math.round(data.pension * PensionTax),
-    units: data.months,
+    unitPrice: Math.round(next.pension * PensionTax),
+    units: next.months,
   },
   ];
 
-  return {...data, rows, summary: summary(data) };
+  return next;
 }

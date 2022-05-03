@@ -9,31 +9,31 @@ const DefaultSickLeavePercent = 5;
 const DefaultPrice = 830;
 const DefaultOccupancy = 9;
 
-export const InitialState = {
+export const InitialState = reducer({
   workHoursPerWeek: DefaultHoursPerWeek,
   vacation: DefaultVacation,
   sickLeavePercent: DefaultSickLeavePercent,
   rate: DefaultPrice,
   occupancy: DefaultOccupancy,
+}, {}, true);
+const StateKeys = Object.keys(InitialState);
+
+export default function reducer(prev, { payload }, force) {
+  if(!force && !Object.keys(payload ?? {}).find(key => StateKeys.includes(key)))
+    return prev;
+
+  const next = {...prev, ...payload };
+  const workingWeeks = WeeksPerMonth * next.occupancy - next.vacation;
+  const workingHours = workingWeeks * next.workHoursPerWeek;
+  const payedHours = Math.round(workingHours * (1 - next.sickLeavePercent / 100));
+
+  next.rows = [
+    {
+      title: 'Arvode',
+      unitPrice: next.rate,
+      units: payedHours,
+    },
+  ];
+
+  return next;
 };
-
-function summary(data) {
-  const workingWeeks = WeeksPerMonth * data.occupancy - data.vacation;
-  const workingHours = workingWeeks * data.workHoursPerWeek;
-  const payedHours = Math.round(workingHours * (1 - data.sickLeavePercent / 100));
-  return {
-    unitPrice: data.rate,
-    units: payedHours,
-    sum: data.rate * payedHours,
-  };  
-}
-
-export default function reducer(prev, { payload }) {
-  const newState = {
-    ...prev,
-    ...payload
-  };
-
-  newState.summary = summary(newState);
-  return newState;
-}

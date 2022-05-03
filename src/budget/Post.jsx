@@ -3,16 +3,15 @@ import TableCell from "@mui/material/TableCell";
 import TableRow from "@mui/material/TableRow";
 import Typography from "@mui/material/Typography";
 
-
 const HeaderTableRow = styled(TableRow)(({ theme }) => ({
-  '.MuiTableCell-root': {
-    paddingTop: '2em',
+  ".MuiTableCell-root": {
+    paddingTop: "2em",
   },
-  '&:first-child': {
-    '.MuiTableCell-root': {
-      paddingTop: 'inherit',
-    }
-  }
+  "&:first-child": {
+    ".MuiTableCell-root": {
+      paddingTop: "inherit",
+    },
+  },
 }));
 
 const PostHeader = ({ heading }) => (
@@ -27,9 +26,7 @@ const Row = ({ title, unitPrice, units, sum, className }) => {
   const sumToDisplay = sum ? sum : (unitPrice ?? 0) * (units ?? 0);
   return (
     <TableRow className={className}>
-      <TableCell>
-        {title}
-      </TableCell>
+      <TableCell>{title}</TableCell>
       <TableCell align="right">{unitPrice?.toLocaleString()}</TableCell>
       <TableCell align="right">{units?.toLocaleString()}</TableCell>
       <TableCell align="right">{sumToDisplay?.toLocaleString()}</TableCell>
@@ -38,21 +35,26 @@ const Row = ({ title, unitPrice, units, sum, className }) => {
 };
 
 const Summary = styled(Row)(({ theme }) => ({
-  '& .MuiTableCell-root': {
-    fontWeight: 'bold',
+  "& .MuiTableCell-root": {
+    fontWeight: "bold",
   },
 }));
 
-export default function Post(props) {
-  const { heading, rows, summary, children } = props;
+function sumRows(sum, row) {
+  return sum + row.units * row.unitPrice;
+}
 
+export default function Post(props) {
+  const { heading, rows, children } = props;
+
+  const sum = rows?.reduce(sumRows, 0) ?? 0;
   return (
     <>
       <PostHeader heading={heading} />
       {rows?.map((row) => (
-        <Row key={row.id} {...row} />
+        <Row key={`${heading}-${row.title}`} {...row} />
       ))}
-      {<Summary {...summary} title={'Summa'} />}
+      {<Summary sum={sum} title={"Summa"} />}
     </>
   );
 }
