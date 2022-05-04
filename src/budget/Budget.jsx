@@ -8,9 +8,10 @@ import Income from "./income";
 import Salary from "./salary";
 import Expenses from "./expenses";
 import useCalculation from "./useBudgetCalculation";
+import Post from "./Post";
 
 export default function Budget() {
-  const [{ income, salary, expenses }, dispatch] = useCalculation();
+  const [{ income, salary, result, expenses }, dispatch] = useCalculation();
 
   return (
     <TableContainer>
@@ -36,6 +37,7 @@ export default function Budget() {
             data={expenses}
             setData={(data) => dispatch({ post: "expenses", payload: data })}
           />
+          <Post heading="Rörelseresultat" rows={result.rows} />
         </TableBody>
       </Table>
     </TableContainer>
