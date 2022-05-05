@@ -1,7 +1,7 @@
-import { Container } from '@mui/material';
-import { ThemeProvider } from '@mui/material/styles';
-import Budget from './budget';
-import theme from './theme';
+import { Container } from "@mui/material";
+import { ThemeProvider } from "@mui/material/styles";
+import Budget from "./budget";
+import theme from "./theme";
 function App() {
   return (
     <ThemeProvider theme={theme}>

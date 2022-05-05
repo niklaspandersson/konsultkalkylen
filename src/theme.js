@@ -5,11 +5,11 @@ const theme = createTheme({
     MuiTableCell: {
       styleOverrides: {
         root: {
-          borderBottom: 'none',
-        }
-      }
-    }
-  }
+          borderBottom: "none",
+        },
+      },
+    },
+  },
 });
 
 export default theme;

@@ -12,25 +12,46 @@ const IncomeParameters = ({ data, setData }) => (
         <DetailsHeader header="Uppdrag" />
         <TableRow>
           <DetailsTitle title="Timarvode (exkl. moms)" />
-          <DetailsInput unit="kr" value={data.rate} onChange={ev => setData({ rate: Number(ev.target.value) })} />
+          <DetailsInput
+            unit="kr"
+            value={data.rate}
+            onChange={(ev) => setData({ rate: Number(ev.target.value) })}
+          />
         </TableRow>
         <TableRow>
           <DetailsTitle title="Debiterbara månader" />
-          <DetailsInput value={data.occupancy} onChange={ev => setData({ occupancy: Number(ev.target.value) })} />
+          <DetailsInput
+            value={data.occupancy}
+            onChange={(ev) => setData({ occupancy: Number(ev.target.value) })}
+          />
         </TableRow>
 
         <DetailsHeader header="Arbetstid" />
         <TableRow>
           <DetailsTitle title="Arbetstimmar per vecka" />
-          <DetailsInput value={data.hoursPerWeek} onChange={ev => setData({ hoursPerWeek: Number(ev.target.value) })} />
+          <DetailsInput
+            value={data.hoursPerWeek}
+            onChange={(ev) =>
+              setData({ hoursPerWeek: Number(ev.target.value) })
+            }
+          />
         </TableRow>
         <TableRow>
           <DetailsTitle title="Lediga veckor under uppdrag" />
-          <DetailsInput value={data.vacation} onChange={ev => setData({ vacation: Number(ev.target.value) })} />
+          <DetailsInput
+            value={data.vacation}
+            onChange={(ev) => setData({ vacation: Number(ev.target.value) })}
+          />
         </TableRow>
         <TableRow>
           <DetailsTitle title="Uppskattad andel sjukdagar/vab" />
-          <DetailsInput unit="%" value={data.sickLeavePercent} onChange={ev => setData({ sickLeavePercent: Number(ev.target.value) })} />
+          <DetailsInput
+            unit="%"
+            value={data.sickLeavePercent}
+            onChange={(ev) =>
+              setData({ sickLeavePercent: Number(ev.target.value) })
+            }
+          />
         </TableRow>
       </TableBody>
     </Table>

@@ -1,10 +1,7 @@
 import { styled } from "@mui/material/styles";
-import TableCell from "@mui/material/TableCell";
-import TableRow from "@mui/material/TableRow";
-import FormControl from "@mui/material/FormControl";
-import InputAdornment from "@mui/material/InputAdornment";
-import TextField from "@mui/material/TextField";
-import Typography from "@mui/material/Typography";
+import {TableRow, TableCell} from "@mui/material";
+import { FormControl, TextField, InputAdornment } from "@mui/material";
+import { Typography } from "@mui/material";
 
 const RightAlignedTextField = styled(TextField)({
   "& input": {
@@ -20,9 +17,7 @@ export const DetailsHeader = ({ header }) => (
   </TableRow>
 );
 
-export const DetailsTitle = ({ title }) => (
-  <TableCell>{title}</TableCell>
-);
+export const DetailsTitle = ({ title }) => <TableCell>{title}</TableCell>;
 
 export const DetailsValue = ({ value }) => (
   <TableCell align="right">{value}</TableCell>
