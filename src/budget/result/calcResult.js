@@ -9,16 +9,14 @@ export default function calcResult(posts) {
   return {
     rows: [
       {
-        title: "Bruttoresultat",
+        title: 'Bruttoresultat',
         units: 1,
         unitPrice: grossResult,
       },
       {
-        title: `Bolagsskatt (${
-          Math.round(CorporateTax * 10000) / 100
-        }% av vinst)`,
+        title: `Bolagsskatt (${(CorporateTax * 100).toFixed(2)}% av vinst)`,
         units: 1,
-        unitPrice: -Math.round(Math.max(0, grossResult) * CorporateTax),
+        unitPrice: Math.round(Math.min(0, -grossResult) * CorporateTax),
       },
     ],
   };

@@ -30,9 +30,9 @@ const IncomeParameters = ({ data, setData }) => (
         <TableRow>
           <DetailsTitle title="Arbetstimmar per vecka" />
           <DetailsInput
-            value={data.hoursPerWeek}
+            value={data.workHoursPerWeek}
             onChange={(ev) =>
-              setData({ hoursPerWeek: Number(ev.target.value) })
+              setData({ workHoursPerWeek: Number(ev.target.value) })
             }
           />
         </TableRow>

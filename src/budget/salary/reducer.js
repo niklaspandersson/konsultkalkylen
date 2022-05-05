@@ -4,7 +4,7 @@ export const EmployerFee = 0.3142;
 export const PensionTax = 0.2426;
 
 // labour time
-const DefaultMonthlySalary = -46200;
+const DefaultMonthlySalary = 46200;
 const DefaultMonthlyPension = Math.round(
   DefaultMonthlySalary * DefaultPensionRatio
 );
@@ -31,27 +31,25 @@ export default function reducer(prev, { payload }, force) {
   const next = { ...prev, ...payload };
   next.rows = [
     {
-      title: "Lön",
-      unitPrice: next.salary,
+      title: 'Lön',
+      unitPrice: -next.salary,
       units: next.months,
     },
     {
-      title: `Arbetsgivaravgift (${
-        Math.round(EmployerFee * 10000) / 100
-      }% av lön)`,
-      unitPrice: Math.round(next.salary * EmployerFee),
+      title: `Arbetsgivaravgift (${(EmployerFee * 100).toFixed(2)}% av lön)`,
+      unitPrice: -Math.round(next.salary * EmployerFee),
       units: next.months,
     },
     {
       title: `Avsättning till tjänstepension (per månad)`,
-      unitPrice: next.pension,
+      unitPrice: -next.pension,
       units: next.months,
     },
     {
-      title: `Löneskatt (${
-        Math.round(PensionTax * 10000) / 100
-      }% av pensionskostnader)`,
-      unitPrice: Math.round(next.pension * PensionTax),
+      title: `Löneskatt (${(PensionTax * 100).toFixed(
+        2,
+      )}% av pensionskostnader)`,
+      unitPrice: -Math.round(next.pension * PensionTax),
       units: next.months,
     },
   ];

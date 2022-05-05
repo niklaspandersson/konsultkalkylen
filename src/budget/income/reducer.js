@@ -4,7 +4,7 @@ const WeeksPerMonth = 4.25;
 // labour time
 const DefaultHoursPerWeek = 35;
 const DefaultVacation = 6;
-const DefaultSickLeavePercent = 5;
+const DefaultSickLeavePercent = 0.05;
 // assignments
 const DefaultPrice = 830;
 const DefaultOccupancy = 9;
@@ -32,9 +32,7 @@ export default function reducer(prev, { payload }, force) {
   const next = { ...prev, ...payload };
   const workingWeeks = WeeksPerMonth * next.occupancy - next.vacation;
   const workingHours = workingWeeks * next.workHoursPerWeek;
-  const payedHours = Math.round(
-    workingHours * (1 - next.sickLeavePercent / 100)
-  );
+  const payedHours = Math.round(workingHours * (1 - next.sickLeavePercent));
 
   next.rows = [
     {
