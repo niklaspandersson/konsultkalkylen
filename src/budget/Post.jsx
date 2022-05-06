@@ -6,7 +6,7 @@ import TableRow from '@mui/material/TableRow';
 import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import Modal from './Modal';
-
+import sumRows from './sumRows';
 const HeaderTableRow = styled(TableRow)(({ theme }) => ({
   '.MuiTableCell-root': {
     paddingTop: '2em',
@@ -51,14 +51,10 @@ const Summary = styled(Row)(({ theme }) => ({
   },
 }));
 
-function sumRows(sum, row) {
-  return sum + row.units * row.unitPrice;
-}
-
 export default function Post(props) {
   const { heading, rows, children } = props;
   const haveEditor = !!children;
-  const sum = rows?.reduce(sumRows, 0) ?? 0;
+  const sum = sumRows(rows);
 
   const [editorOpen, setEditorOpen] = useState(false);
   const openEditor = () => setEditorOpen(true);

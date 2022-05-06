@@ -1,23 +1,13 @@
-// Constants
-const DefaultPensionRatio = 0.05;
-export const EmployerFee = 0.3142;
-export const PensionTax = 0.2426;
-
-// labour time
-const DefaultMonthlySalary = 46200;
-const DefaultMonthlyPension = Math.round(
-  DefaultMonthlySalary * DefaultPensionRatio
-);
-const DefaultMonths = 12;
+import { Defaults, EmployerFee, PensionTax } from '../constants';
 
 export const InitialState = reducer(
   {
-    salary: DefaultMonthlySalary,
-    pension: DefaultMonthlyPension,
-    months: DefaultMonths,
+    salary: Defaults.salary,
+    pension: Math.round(Defaults.salary * Defaults.pensionRatio),
+    months: Defaults.monthsSalary,
   },
   {},
-  true
+  true,
 );
 const StateKeys = Object.keys(InitialState);
 

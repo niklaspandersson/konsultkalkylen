@@ -1,24 +1,15 @@
-// Constants
-const WeeksPerMonth = 4.25;
-
-// labour time
-const DefaultHoursPerWeek = 35;
-const DefaultVacation = 6;
-const DefaultSickLeavePercent = 0.05;
-// assignments
-const DefaultPrice = 830;
-const DefaultOccupancy = 9;
+import { Defaults, WeeksPerMonth } from '../constants';
 
 export const InitialState = reducer(
   {
-    workHoursPerWeek: DefaultHoursPerWeek,
-    vacation: DefaultVacation,
-    sickLeavePercent: DefaultSickLeavePercent,
-    rate: DefaultPrice,
-    occupancy: DefaultOccupancy,
+    workHoursPerWeek: Defaults.hoursPerWeek,
+    vacation: Defaults.vacation,
+    sickLeavePercent: Defaults.sickLeavePercent,
+    rate: Defaults.price,
+    occupancy: Defaults.occupancy,
   },
   {},
-  true
+  true,
 );
 const StateKeys = Object.keys(InitialState);
 
@@ -36,7 +27,7 @@ export default function reducer(prev, { payload }, force) {
 
   next.rows = [
     {
-      title: "Arvode",
+      title: 'Arvode',
       unitPrice: next.rate,
       units: payedHours,
     },

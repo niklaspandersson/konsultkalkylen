@@ -9,7 +9,7 @@ import {
   DetailsTitle,
   DetailsValue,
 } from "../cells";
-import { EmployerFee, PensionTax } from "./reducer";
+import { EmployerFee, PensionTax } from '../constants';
 
 const SalaryParameters = ({ data, setData }) => (
   <TableContainer>
