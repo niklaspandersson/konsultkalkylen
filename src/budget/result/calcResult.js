@@ -9,6 +9,7 @@ export default function calcResult(posts) {
       title: 'Bruttoresultat',
       units: 1,
       unitPrice: gross,
+      hidden: true,
     },
     {
       title: `Bolagsskatt (${(CorporateTax * 100).toFixed(2)}% av vinst)`,

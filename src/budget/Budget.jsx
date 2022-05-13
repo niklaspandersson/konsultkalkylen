@@ -1,8 +1,29 @@
-import useCalculation from "./useBudgetCalculation";
-import Tabular from "./Tabular";
-import Post from "./Post";
-import IncomeParameters from "./income/IncomeParameters";
+import useCalculation from './useBudgetCalculation';
+import Tabular from './Tabular';
+import Post from './Post';
+import IncomeParameters from './income/IncomeParameters';
 import SalaryParameters from './salary/SalaryParameters';
+import { TableCell, TableRow } from '@mui/material';
+
+const Result = ({ title, value }) => {
+  return (
+    <TableRow>
+      <TableCell sx={{ fontSize: '1.2em', fontWeight: 'bold' }} colSpan={3}>
+        {title}
+      </TableCell>
+      <TableCell
+        sx={{
+          borderTop: '1px solid black',
+          fontSize: '1.2em',
+          fontWeight: 'bold',
+        }}
+        align="right"
+      >
+        {value.toLocaleString()}
+      </TableCell>
+    </TableRow>
+  );
+};
 
 export default function Budget() {
   const [{ income, salary, result, expenses }, dispatch] = useCalculation();
@@ -22,7 +43,9 @@ export default function Budget() {
         />
       </Post>
       <Post heading="Andra utgifter" rows={expenses.rows} />
-      <Post heading="" rows={result.rows} />
+      <Result title="Bruttoresultat" value={result.gross} />
+      <Post heading="" noSum rows={result.rows} />
+      <Result title={'Nettoresultat'} value={result.net} />
     </Tabular>
   );
 }

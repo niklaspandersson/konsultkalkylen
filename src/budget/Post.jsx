@@ -7,7 +7,8 @@ import Typography from '@mui/material/Typography';
 import { useState } from 'react';
 import Modal from './Modal';
 import sumRows from './sumRows';
-const HeaderTableRow = styled(TableRow)(({ theme }) => ({
+
+const HeaderTableRow = styled(TableRow)(() => ({
   '.MuiTableCell-root': {
     paddingTop: '2em',
   },
@@ -33,7 +34,7 @@ const PostHeader = ({ heading, onEdit }) => (
   </HeaderTableRow>
 );
 
-const Row = ({ title, unitPrice, units, sum, className }) => {
+export const Row = ({ title, unitPrice, units, sum, className }) => {
   const sumToDisplay = sum ? sum : (unitPrice ?? 0) * (units ?? 0);
   return (
     <TableRow className={className}>
@@ -45,14 +46,14 @@ const Row = ({ title, unitPrice, units, sum, className }) => {
   );
 };
 
-const Summary = styled(Row)(({ theme }) => ({
+const Summary = styled(Row)(() => ({
   '& .MuiTableCell-root': {
     fontWeight: 'bold',
   },
 }));
 
 export default function Post(props) {
-  const { heading, rows, children } = props;
+  const { heading, rows, children, noSum } = props;
   const haveEditor = !!children;
   const sum = sumRows(rows);
 
@@ -71,10 +72,11 @@ export default function Post(props) {
         heading={heading}
         onEdit={haveEditor ? openEditor : undefined}
       />
-      {rows?.map((row) => (
-        <Row key={`${heading}-${row.title}`} {...row} />
-      ))}
-      {<Summary sum={sum} title={'Summa'} />}
+      {rows?.map(
+        (row) =>
+          !row.hidden && <Row key={`${heading}-${row.title}`} {...row} />,
+      )}
+      {!noSum && <Summary sum={sum} title={'Summa'} />}
     </>
   );
 }
