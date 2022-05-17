@@ -1,31 +1,20 @@
-import sum from '../sumRows';
+import sumPosts from '../sumPosts';
+import sumRows from '../sumRows';
 import {
   StandardDeductablesTax,
   DeductablesTax,
-  PensionTax,
   MeanIncomeTax,
   BasicDeduction,
   StateIncomeTax,
   StateIncomeTaxLimit,
-  PensionExpensesTitle,
 } from '../constants';
 
-const relevantPosts = ['income', 'expenses'];
+const relevantPostIds = ['income', 'privatePension', 'expenses'];
 export default function calcResult(allPosts) {
-  const allRows = Object.entries(allPosts)
-    .filter(([key, _]) => relevantPosts.includes(key))
-    .flatMap(([_, post]) => post.rows);
-
-  const gross = sum(allRows);
-
-  const pensionRow = allPosts?.expenses?.rows?.find(
-    (row) => row.title === PensionExpensesTitle,
-  );
-  const pension = -(pensionRow?.units ?? 0) * (pensionRow?.unitPrice ?? 0);
+  const gross = sumPosts(allPosts, relevantPostIds);
 
   const afterBasicDeduction = Math.max(0, gross - BasicDeduction);
-  const deductions =
-    afterBasicDeduction * StandardDeductablesTax + pension * PensionTax;
+  const deductions = afterBasicDeduction * StandardDeductablesTax;
   const taxableIncome = afterBasicDeduction - deductions;
 
   const rows = [
@@ -39,15 +28,6 @@ export default function calcResult(allPosts) {
       title: `Egenavgifter (${(DeductablesTax * 100).toFixed(2)}%)`,
       units: 1,
       unitPrice: -Math.round(taxableIncome * DeductablesTax),
-    },
-
-    {
-      title: `Löneskatt (${(PensionTax * 100).toFixed(
-        2,
-      )}% av pensionskostnader)`,
-      units: 1,
-      unitPrice: -Math.round(pension * PensionTax),
-      hidden: pension === 0,
     },
     {
       title: `Kommunalskatt (${(MeanIncomeTax * 100).toFixed(2)}%)`,
@@ -70,6 +50,6 @@ export default function calcResult(allPosts) {
   return {
     gross,
     rows,
-    net: sum(rows),
+    net: sumRows(rows),
   };
 }

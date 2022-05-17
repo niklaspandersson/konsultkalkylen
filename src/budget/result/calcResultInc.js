@@ -1,9 +1,10 @@
-import sum from '../sumRows';
+import sumPosts from '../sumPosts';
+import sumRows from '../sumRows';
 import { CorporateTax } from '../constants';
 
-export default function calcResult(posts) {
-  const allPosts = Object.values(posts).flatMap((post) => post.rows);
-  const gross = sum(allPosts);
+const relevantPostIds = ['income', 'expenses', 'salary'];
+export default function calcResult(allPosts) {
+  const gross = sumPosts(allPosts, relevantPostIds);
   const rows = [
     {
       title: 'Bruttoresultat',
@@ -20,6 +21,6 @@ export default function calcResult(posts) {
   return {
     gross,
     rows,
-    net: sum(rows),
+    net: sumRows(rows),
   };
 }

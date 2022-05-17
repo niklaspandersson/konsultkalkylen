@@ -5,6 +5,9 @@ import incomeReducer, {
 import salaryReducer, {
   InitialState as InitialSalaryState,
 } from './salary/reducer';
+import privatePensionReducer, {
+  InitialState as InitialPrivatePensionState,
+} from './privatePension/reducer';
 import expensesReducer, {
   InitialState as InitialExpensesState,
 } from './expenses/reducer';
@@ -13,12 +16,14 @@ import combineReducers from '../combineReducers';
 const InitialState = {
   income: InitialIncomeState,
   salary: InitialSalaryState,
+  privatePension: InitialPrivatePensionState,
   expenses: InitialExpensesState,
 };
 
 const reducers = {
   income: incomeReducer,
   salary: salaryReducer,
+  privatePension: privatePensionReducer,
   expenses: expensesReducer,
 };
 
