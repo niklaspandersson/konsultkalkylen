@@ -1,4 +1,4 @@
-import { useMemo, useReducer } from 'react';
+import { useReducer } from 'react';
 import incomeReducer, {
   InitialState as InitialIncomeState,
 } from './income/reducer';

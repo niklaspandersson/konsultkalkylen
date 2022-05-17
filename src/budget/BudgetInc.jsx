@@ -18,13 +18,13 @@ export default function BudgetInc({ state, dispatch }) {
           setData={(data) => dispatch({ post: 'income', payload: data })}
         />
       </Post>
+      <Post heading="Utgifter" rows={expenses.rows} />
       <Post heading="Lön och tjänstepension" rows={salary.rows}>
         <SalaryParameters
           data={salary}
           setData={(data) => dispatch({ post: 'salary', payload: data })}
         />
       </Post>
-      <Post heading="Övriga utgifter" rows={expenses.rows} />
       <Result title="Bruttoresultat" value={result.gross} />
       <Post heading="" noSum rows={result.rows} />
       <Result title={'Nettoresultat'} value={result.net} />
