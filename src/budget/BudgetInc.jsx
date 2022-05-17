@@ -1,14 +1,14 @@
-import useCalculation from './useBudgetCalculation';
 import Tabular from './Tabular';
 import Post from './Post';
 import Result from './ResultRow';
 import IncomeParameters from './income/IncomeParameters';
 import SalaryParameters from './salary/SalaryParameters';
 import calcResult from './result/calcResultInc';
+import { useMemo } from 'react';
 
-export default function Budget() {
-  const [{ income, salary, result, expenses }, dispatch] =
-    useCalculation(calcResult);
+export default function BudgetInc({ state, dispatch }) {
+  const result = useMemo(() => calcResult(state), [state]);
+  const { income, salary, expenses } = state;
 
   return (
     <Tabular>
@@ -18,13 +18,13 @@ export default function Budget() {
           setData={(data) => dispatch({ post: 'income', payload: data })}
         />
       </Post>
-      <Post heading="Uttag" rows={salary.rows}>
+      <Post heading="Lön och tjänstepension" rows={salary.rows}>
         <SalaryParameters
           data={salary}
           setData={(data) => dispatch({ post: 'salary', payload: data })}
         />
       </Post>
-      <Post heading="Utgifter" rows={expenses.rows} />
+      <Post heading="Övriga utgifter" rows={expenses.rows} />
       <Result title="Bruttoresultat" value={result.gross} />
       <Post heading="" noSum rows={result.rows} />
       <Result title={'Nettoresultat'} value={result.net} />

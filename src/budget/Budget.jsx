@@ -1,4 +1,4 @@
-import useCalculation from './useBudgetCalculation';
+import { useMemo } from 'react';
 import Tabular from './Tabular';
 import Result from './ResultRow';
 import Post from './Post';
@@ -6,9 +6,9 @@ import IncomeParameters from './income/IncomeParameters';
 import PensionParameters from './privatePension/Parameters';
 import calcResult from './result/calcPrivateResult';
 
-export default function Budget() {
-  const [{ income, result, privatePension, expenses }, dispatch] =
-    useCalculation(calcResult);
+export default function Budget({ state, dispatch }) {
+  const result = useMemo(() => calcResult(state), [state]);
+  const { income, expenses, privatePension } = state;
 
   return (
     <Tabular>

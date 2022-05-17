@@ -1,4 +1,4 @@
-export default function combineReducers(reducers, calcResult) {
+export default function combineReducers(reducers) {
   function cloneState(prev) {
     return Object.keys(reducers).reduce((next, key) => {
       next[key] = prev[key];
@@ -14,7 +14,6 @@ export default function combineReducers(reducers, calcResult) {
         const next = cloneState(prev);
         next[post] = newPost;
 
-        next.result = calcResult(next);
         return next;
       }
     }

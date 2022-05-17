@@ -20,22 +20,15 @@ const InitialState = {
   expenses: InitialExpensesState,
 };
 
-const reducers = {
+const reducer = combineReducers({
   income: incomeReducer,
   salary: salaryReducer,
   privatePension: privatePensionReducer,
   expenses: expensesReducer,
+});
+
+const useBudgetData = () => {
+  return useReducer(reducer, InitialState);
 };
 
-const useBudgetCalculation = (calcResult) => {
-  const reducer = useMemo(
-    () => combineReducers(reducers, calcResult),
-    [calcResult],
-  );
-  return useReducer(reducer, InitialState, (state) => ({
-    ...state,
-    result: calcResult(state),
-  }));
-};
-
-export default useBudgetCalculation;
+export default useBudgetData;
