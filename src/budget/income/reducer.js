@@ -23,7 +23,9 @@ export default function reducer(prev, { payload }, force) {
   const next = { ...prev, ...payload };
   const workingWeeks = WeeksPerMonth * next.occupancy - next.vacation;
   const workingHours = workingWeeks * next.workHoursPerWeek;
-  const payedHours = Math.round(workingHours * (1 - next.sickLeavePercent));
+  const payedHours = Math.round(
+    workingHours * (1 - next.sickLeavePercent / 100),
+  );
 
   next.rows = [
     {

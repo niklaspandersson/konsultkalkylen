@@ -1,21 +1,20 @@
-import { useReducer } from "react";
+import { useMemo, useReducer } from 'react';
 import incomeReducer, {
   InitialState as InitialIncomeState,
-} from "./income/reducer";
+} from './income/reducer';
 import salaryReducer, {
   InitialState as InitialSalaryState,
-} from "./salary/reducer";
+} from './salary/reducer';
 import expensesReducer, {
   InitialState as InitialExpensesState,
-} from "./expenses/reducer";
-import calcResult from "./result/calcResult";
+} from './expenses/reducer';
+import combineReducers from '../combineReducers';
 
 const InitialState = {
   income: InitialIncomeState,
   salary: InitialSalaryState,
   expenses: InitialExpensesState,
 };
-InitialState.result = calcResult(InitialState);
 
 const reducers = {
   income: incomeReducer,
@@ -23,27 +22,15 @@ const reducers = {
   expenses: expensesReducer,
 };
 
-function reducer(prev, action) {
-  const post = action.post;
-  if (reducers[post]) {
-    const newPost = reducers[post](prev[post], action);
-    if (newPost !== prev[post]) {
-      const next = {
-        ...prev,
-        [post]: newPost,
-      };
-
-      delete next.result;
-      next.result = calcResult(next);
-      return next;
-    }
-  }
-
-  return prev;
-}
-
-const useBudgetCalculation = () => {
-  return useReducer(reducer, InitialState);
+const useBudgetCalculation = (calcResult) => {
+  const reducer = useMemo(
+    () => combineReducers(reducers, calcResult),
+    [calcResult],
+  );
+  return useReducer(reducer, InitialState, (state) => ({
+    ...state,
+    result: calcResult(state),
+  }));
 };
 
 export default useBudgetCalculation;

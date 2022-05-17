@@ -12,7 +12,7 @@ export default function reducer(prev, { payload }, force) {
 
   next.rows = [
     {
-      title: "Blandat",
+      title: 'Blandat',
       unitPrice: -5000,
       units: 12,
     },

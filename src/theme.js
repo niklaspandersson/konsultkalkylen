@@ -1,15 +1,18 @@
-import { createTheme } from "@mui/material";
+import { createTheme as MUIcreateTheme } from '@mui/material';
 
-const theme = createTheme({
-  components: {
-    MuiTableCell: {
-      styleOverrides: {
-        root: {
-          borderBottom: "none",
+export default function createTheme({ mode }) {
+  return MUIcreateTheme({
+    palette: {
+      mode,
+    },
+    components: {
+      MuiTableCell: {
+        styleOverrides: {
+          root: {
+            borderBottom: 'none',
+          },
         },
       },
     },
-  },
-});
-
-export default theme;
+  });
+}
