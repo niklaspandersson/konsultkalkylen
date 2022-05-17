@@ -1,4 +1,4 @@
-import { Defaults, EmployerFee, PensionTax } from '../constants';
+import { Defaults, EmployerFee, PensionTax } from '../../constants';
 
 export const InitialState = reducer(
   {

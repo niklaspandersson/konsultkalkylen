@@ -1,14 +1,23 @@
+import { useMemo } from 'react';
 import Tabular from './Tabular';
 import Post from './Post';
 import Result from './ResultRow';
-import IncomeParameters from './income/IncomeParameters';
-import SalaryParameters from './salary/SalaryParameters';
-import calcResult from './result/calcResultInc';
-import { useMemo } from 'react';
+import IncomeParameters from './income/Parameters';
+import SalaryParameters from './inc/salary/Parameters';
+import calcResult from './inc/calcResult';
+import calcEarnings from './inc/calcEarnings';
 
 export default function BudgetInc({ state, dispatch }) {
-  const result = useMemo(() => calcResult(state), [state]);
-  const { income, salary, expenses } = state;
+  const { income, expenses, salary } = state;
+
+  const result = useMemo(
+    () => calcResult({ income, expenses, salary }),
+    [income, expenses, salary],
+  );
+  const privateEarnings = useMemo(
+    () => calcEarnings({ result, salary }),
+    [result, salary],
+  );
 
   return (
     <Tabular>
@@ -27,7 +36,13 @@ export default function BudgetInc({ state, dispatch }) {
       </Post>
       <Result title="Bruttoresultat" value={result.gross} />
       <Post heading="" noSum rows={result.rows} />
-      <Result title={'Nettoresultat'} value={result.net} />
+      <Result title="Nettoresultat" value={result.net} />
+      <Post
+        heading="Privat förtjänst från verksamhet"
+        noSum
+        rows={privateEarnings.rows}
+      />
+      <Result title="Årsinkomst efter skatt" value={privateEarnings.net} />
     </Tabular>
   );
 }

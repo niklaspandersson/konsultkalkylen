@@ -1,17 +1,17 @@
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableContainer from "@mui/material/TableContainer";
-import TableRow from "@mui/material/TableRow";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableContainer from '@mui/material/TableContainer';
+import TableRow from '@mui/material/TableRow';
 
 import {
   DetailsHeader,
   DetailsInput,
   DetailsTitle,
   DetailsValue,
-} from "../cells";
-import { EmployerFee, PensionTax } from '../constants';
+} from '../../cells';
+import { EmployerFee, PensionTax } from '../../constants';
 
-const SalaryParameters = ({ data, setData }) => (
+const Parameters = ({ data, setData }) => (
   <TableContainer>
     <Table size="small">
       <TableBody>
@@ -31,7 +31,7 @@ const SalaryParameters = ({ data, setData }) => (
             onChange={(ev) => setData({ salary: Number(ev.target.value) })}
           />
         </TableRow>
-        <TableRow sx={{ fontStyle: "italic" }}>
+        <TableRow sx={{ fontStyle: 'italic' }}>
           <DetailsTitle
             title={`Arbetsgivaravgift (${
               Math.round(EmployerFee * 10000) / 100
@@ -39,7 +39,7 @@ const SalaryParameters = ({ data, setData }) => (
           />
           <DetailsValue
             value={`${Math.round(
-              data.salary * EmployerFee
+              data.salary * EmployerFee,
             ).toLocaleString()} kr`}
           />
         </TableRow>
@@ -51,7 +51,7 @@ const SalaryParameters = ({ data, setData }) => (
             onChange={(ev) => setData({ pension: Number(ev.target.value) })}
           />
         </TableRow>
-        <TableRow sx={{ fontStyle: "italic" }}>
+        <TableRow sx={{ fontStyle: 'italic' }}>
           <DetailsTitle
             title={`Löneskatt (${
               Math.round(PensionTax * 10000) / 100
@@ -59,7 +59,7 @@ const SalaryParameters = ({ data, setData }) => (
           />
           <DetailsValue
             value={`${Math.round(
-              data.pension * PensionTax
+              data.pension * PensionTax,
             ).toLocaleString()} kr`}
           />
         </TableRow>
@@ -67,4 +67,4 @@ const SalaryParameters = ({ data, setData }) => (
     </Table>
   </TableContainer>
 );
-export default SalaryParameters;
+export default Parameters;

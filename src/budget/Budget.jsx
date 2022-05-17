@@ -2,7 +2,7 @@ import { useMemo } from 'react';
 import Tabular from './Tabular';
 import Result from './ResultRow';
 import Post from './Post';
-import IncomeParameters from './income/IncomeParameters';
+import IncomeParameters from './income/Parameters';
 import PensionParameters from './privatePension/Parameters';
 import calcResult from './result/calcPrivateResult';
 

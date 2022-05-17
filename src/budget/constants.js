@@ -6,8 +6,8 @@ export const StandardDeductablesTax = 0.25;
 export const DeductablesTax = 0.2897;
 export const MeanIncomeTax = 0.3224;
 export const StateIncomeTax = 0.2;
-export const StateIncomeTaxLimit = 523200;
-export const BasicDeduction = 14000;
+export const StateIncomeTaxLimit = 540700;
+export const BasicDeduction = 14200;
 
 export const PensionExpensesTitle = 'Privat pensionssparande';
 

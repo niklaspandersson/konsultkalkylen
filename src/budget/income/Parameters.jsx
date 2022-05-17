@@ -1,11 +1,11 @@
-import Table from "@mui/material/Table";
-import TableBody from "@mui/material/TableBody";
-import TableContainer from "@mui/material/TableContainer";
-import TableRow from "@mui/material/TableRow";
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableContainer from '@mui/material/TableContainer';
+import TableRow from '@mui/material/TableRow';
 
-import { DetailsHeader, DetailsInput, DetailsTitle } from "../cells";
+import { DetailsHeader, DetailsInput, DetailsTitle } from '../cells';
 
-const IncomeParameters = ({ data, setData }) => (
+const Parameters = ({ data, setData }) => (
   <TableContainer>
     <Table size="small">
       <TableBody>
@@ -58,4 +58,4 @@ const IncomeParameters = ({ data, setData }) => (
   </TableContainer>
 );
 
-export default IncomeParameters;
+export default Parameters;
