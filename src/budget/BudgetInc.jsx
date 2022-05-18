@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import { TableCell, TableRow } from '@mui/material';
 import Tabular from './Tabular';
 import Post from './Post';
 import Result from './ResultRow';
@@ -6,6 +7,7 @@ import IncomeParameters from './income/Parameters';
 import SalaryParameters from './inc/salary/Parameters';
 import calcResult from './inc/calcResult';
 import calcEarnings from './inc/calcEarnings';
+import PrivateEarnings from './inc/PrivateEarnings';
 
 export default function BudgetInc({ state, dispatch }) {
   const { income, expenses, salary } = state;
@@ -37,12 +39,14 @@ export default function BudgetInc({ state, dispatch }) {
       <Result title="Bruttoresultat" value={result.gross} />
       <Post heading="" noSum rows={result.rows} />
       <Result title="Nettoresultat" value={result.net} />
-      <Post
-        heading="Privat förtjänst från verksamhet"
-        noSum
-        rows={privateEarnings.rows}
-      />
-      <Result title="Årsinkomst efter skatt" value={privateEarnings.net} />
+      <TableRow>
+        <TableCell scope="row" colSpan={4}>
+          <PrivateEarnings
+            {...privateEarnings}
+            heading="Privat förtjänst från verksamhet"
+          />
+        </TableCell>
+      </TableRow>
     </Tabular>
   );
 }

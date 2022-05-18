@@ -46,7 +46,7 @@ export const Row = ({ title, unitPrice, units, sum, className }) => {
   );
 };
 
-const Summary = styled(Row)(() => ({
+export const Summary = styled(Row)(() => ({
   '& .MuiTableCell-root': {
     fontWeight: 'bold',
   },
