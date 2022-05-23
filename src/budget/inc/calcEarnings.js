@@ -12,7 +12,7 @@ export default function calcResult({ salary, result }) {
   const dividend = Math.max(0, Math.round(result.net));
   const rows = [
     {
-      title: 'Lön',
+      title: 'Inkomst av tjänst (lön)',
       units: salary.months,
       unitPrice: salary.salary,
     },
@@ -33,13 +33,13 @@ export default function calcResult({ salary, result }) {
       hidden: taxableIncome < StateIncomeTaxLimit,
     },
     {
-      title: `Utdelning`,
+      title: `Inkomst av kapital (utdelning)`,
       units: 1,
       unitPrice: dividend,
       hidden: !dividend,
     },
     {
-      title: `Skatt på kapitalvinst från utdelning`,
+      title: `Skatt på kapitalvinst`,
       units: 1,
       unitPrice: -Math.round(dividend * StateIncomeTax),
       hidden: !dividend,
