@@ -1,4 +1,4 @@
-import { Container, Paper } from '@mui/material';
+import { Container, CssBaseline, Paper } from '@mui/material';
 import TabControl from './TabControl';
 import { Budget, BudgetInc } from './budget';
 import useBudgetData from './budget/useBudgetData';
@@ -20,6 +20,7 @@ function App() {
 
   return (
     <ColorModeProvider>
+      <CssBaseline enableColorScheme />
       <Container maxWidth="md">
         <Paper>
           <TabControl tabs={tabs} />
