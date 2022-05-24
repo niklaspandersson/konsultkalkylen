@@ -3,6 +3,7 @@ import { TableCell, TableRow } from '@mui/material';
 import Tabular from './Tabular';
 import Post from './Post';
 import Result from './ResultRow';
+import ExpensesParameters from './expenses/Parameters';
 import IncomeParameters from './income/Parameters';
 import SalaryParameters from './inc/salary/Parameters';
 import calcResult from './inc/calcResult';
@@ -29,7 +30,12 @@ export default function BudgetInc({ state, dispatch }) {
           setData={(data) => dispatch({ post: 'income', payload: data })}
         />
       </Post>
-      <Post heading="Utgifter" rows={expenses.rows} />
+      <Post heading="Utgifter" rows={expenses.rows}>
+        <ExpensesParameters
+          data={expenses}
+          setData={(data) => dispatch({ post: 'expenses', payload: data })}
+        />
+      </Post>
       <Post heading="Lön och tjänstepension" rows={salary.rows}>
         <SalaryParameters
           data={salary}

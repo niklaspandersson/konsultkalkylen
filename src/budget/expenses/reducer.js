@@ -1,4 +1,11 @@
-export const InitialState = reducer({}, {}, true);
+export const InitialState = reducer(
+  {
+    monthly: 3000,
+    yearly: 2000,
+  },
+  {},
+  true,
+);
 const StateKeys = Object.keys(InitialState);
 
 export default function reducer(prev, { payload }, force) {
@@ -12,9 +19,14 @@ export default function reducer(prev, { payload }, force) {
 
   next.rows = [
     {
-      title: 'Blandat',
-      unitPrice: -5000,
+      title: 'Månatliga utgifter',
+      unitPrice: -next.monthly,
       units: 12,
+    },
+    {
+      title: 'Årliga utgifter',
+      unitPrice: -next.yearly,
+      units: 1,
     },
   ];
 
