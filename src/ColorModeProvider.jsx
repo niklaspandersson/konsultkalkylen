@@ -1,17 +1,20 @@
 import { useMediaQuery } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
-import { createContext, useMemo, useState } from 'react';
+import { createContext, useEffect, useMemo, useState } from 'react';
 import createTheme from './theme';
 
 const ColorModeContext = createContext({ toggleColorMode: () => {} });
 
 const ColorModeProvider = ({ children }) => {
   const prefersDarkMode = useMediaQuery('(prefers-color-scheme: dark)');
-  const [mode, setMode] = useState(prefersDarkMode ? 'dark' : 'light');
+  const [darkMode, setDarkMode] = useState(prefersDarkMode);
+
+  useEffect(() => setDarkMode(prefersDarkMode), [prefersDarkMode]);
+
   const colorMode = useMemo(
     () => ({
       toggleColorMode: () => {
-        setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
+        setDarkMode((prev) => !prev);
       },
     }),
     [],
@@ -20,9 +23,9 @@ const ColorModeProvider = ({ children }) => {
   const theme = useMemo(
     () =>
       createTheme({
-        mode,
+        mode: darkMode ? 'dark' : 'light',
       }),
-    [mode],
+    [darkMode],
   );
 
   return (
