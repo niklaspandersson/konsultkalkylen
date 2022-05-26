@@ -64,7 +64,7 @@ export default function Post(props) {
   return (
     <>
       {haveEditor && (
-        <Modal title={heading} open={editorOpen} handleClose={closeEditor}>
+        <Modal title={heading} open={editorOpen} onClose={closeEditor}>
           {children}
         </Modal>
       )}
