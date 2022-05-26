@@ -3,15 +3,14 @@ import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 
-import { DetailsHeader, DetailsInput, DetailsTitle } from '../cells';
+import { DetailsInput, DetailsTitle } from '../cells';
 
 const Parameters = ({ data, setData }) => (
   <TableContainer>
     <Table size="small">
       <TableBody>
-        <DetailsHeader header="Månatliga utgifter" />
         <TableRow>
-          <DetailsTitle title="Antal månader att betala ut lön" />
+          <DetailsTitle title="Månatliga utgifter" />
           <DetailsInput
             unit="kr"
             value={data.monthly}

@@ -1,4 +1,4 @@
-import { Defaults, PensionTax } from '../constants';
+import { Defaults, PensionTax } from '../../constants';
 
 export const InitialState = reducer(
   {

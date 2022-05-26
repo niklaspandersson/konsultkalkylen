@@ -3,19 +3,13 @@ import TableBody from '@mui/material/TableBody';
 import TableContainer from '@mui/material/TableContainer';
 import TableRow from '@mui/material/TableRow';
 
-import {
-  DetailsHeader,
-  DetailsInput,
-  DetailsTitle,
-  DetailsValue,
-} from '../../cells';
+import { DetailsInput, DetailsTitle, DetailsValue } from '../../cells';
 import { EmployerFee, PensionTax } from '../../constants';
 
 const Parameters = ({ data, setData }) => (
   <TableContainer>
     <Table size="small">
       <TableBody>
-        <DetailsHeader header="Lön och pension" />
         <TableRow>
           <DetailsTitle title="Antal månader att betala ut lön" />
           <DetailsInput

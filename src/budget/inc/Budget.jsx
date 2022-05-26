@@ -1,14 +1,14 @@
 import { useMemo } from 'react';
 import { TableCell, TableRow } from '@mui/material';
-import Tabular from './Tabular';
-import Post from './Post';
-import Result from './ResultRow';
-import ExpensesParameters from './expenses/Parameters';
-import IncomeParameters from './income/Parameters';
-import SalaryParameters from './inc/salary/Parameters';
-import calcResult from './inc/calcResult';
-import calcEarnings from './inc/calcEarnings';
-import PrivateEarnings from './inc/PrivateEarnings';
+import Tabular from '../Tabular';
+import Post from '../Post';
+import Result from '../ResultRow';
+import ExpensesParameters from '../expenses/Parameters';
+import IncomeParameters from '../income/Parameters';
+import SalaryParameters from './salary/Parameters';
+import calcResult from './calcResult';
+import calcEarnings from './calcEarnings';
+import PrivateEarnings from './PrivateEarnings';
 
 export default function BudgetInc({ state, dispatch }) {
   const { income, expenses, salary } = state;

@@ -8,7 +8,9 @@ const Result = ({ title, value }) => {
       </TableCell>
       <TableCell
         sx={{
-          borderTop: '1px solid black',
+          borderTopWidth: '1px',
+          borderTopStyle: 'solid',
+          borderTopColor: 'text.primary',
           fontSize: '1.2em',
           fontWeight: 'bold',
         }}

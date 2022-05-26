@@ -7,7 +7,7 @@ import salaryReducer, {
 } from './inc/salary/reducer';
 import privatePensionReducer, {
   InitialState as InitialPrivatePensionState,
-} from './privatePension/reducer';
+} from './private/pension/reducer';
 import expensesReducer, {
   InitialState as InitialExpensesState,
 } from './expenses/reducer';

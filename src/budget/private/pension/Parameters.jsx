@@ -8,8 +8,8 @@ import {
   DetailsInput,
   DetailsTitle,
   DetailsValue,
-} from '../cells';
-import { PensionTax } from '../constants';
+} from '../../cells';
+import { PensionTax } from '../../constants';
 
 const Parameters = ({ data, setData }) => (
   <TableContainer>

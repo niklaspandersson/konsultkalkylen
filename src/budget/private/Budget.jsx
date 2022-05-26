@@ -1,11 +1,11 @@
 import { useMemo } from 'react';
-import Tabular from './Tabular';
-import Result from './ResultRow';
-import Post from './Post';
-import ExpensesParameters from './expenses/Parameters';
-import IncomeParameters from './income/Parameters';
-import PensionParameters from './privatePension/Parameters';
-import calcResult from './result/calcPrivateResult';
+import Tabular from '../Tabular';
+import Result from '../ResultRow';
+import Post from '../Post';
+import ExpensesParameters from '../expenses/Parameters';
+import IncomeParameters from '../income/Parameters';
+import PensionParameters from './pension/Parameters';
+import calcResult from './calcResult';
 
 export default function Budget({ state, dispatch }) {
   const result = useMemo(() => calcResult(state), [state]);
