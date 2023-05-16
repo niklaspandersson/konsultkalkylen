@@ -42,8 +42,8 @@ export default function BudgetInc({ state, dispatch }) {
           setData={(data) => dispatch({ post: 'salary', payload: data })}
         />
       </Post>
-      <Result title="Bruttoresultat" value={result.gross} />
-      <Post heading="" noSum rows={result.rows} />
+      <Result value={result.gross} />
+      <Post noSum rows={result.rows} />
       <Result title="Nettoresultat" value={result.net} />
       <TableRow>
         <TableCell scope="row" colSpan={4}>
